@@ -40,14 +40,36 @@
 3. 결과를 해석한다.
 
 ### 3. 조합된 모델
-1. 
-2.
- 
+#### 1. CHAID
+1. logistic regression
+2. C4.5
+3. randomforest
+4. neural network
+5. logistic + randomforest
+
+#### 2. CART
+1. logistic regression
+2. C4.5
+3. randomforest
+4. neural network
+5. logistic + randomforest
+
+#### 3. CTREE
+1. logistic regression
+2. C4.5
+3. randomforest
+4. neural network
+5. logistic + randomforest
+
 ## 4 모델링 평가
-### 1. - ROC curve(AUC)를 이용한 모델 평가
-1.
-2.
-3.
+### 1. ROC curve(AUC)를 이용한 모델 평가
+1. logistic regression + CHAID
+2. C4.5 + CHAID
+3. no selection + CART
+4. logistic regression + randomforest + CART
+5. no selection + CTREE
+6. C4.5 + CTREE
+7. randomforest + CTREE
 
 ##  4 결론
 
