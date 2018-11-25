@@ -46,38 +46,36 @@
 3. 결과를 해석한다.
 
 ### 3. 조합된 모델
-#### 1. CHAID
-1. logistic regression
-2. C4.5
-3. randomforest
-4. neural network
-5. logistic + randomforest
+1. logistic regression(유의확률 5% 이내의 변수 선택)
+2. C4.5(엔트로피 지수 결과를 보고, 0.01 이상의 변수 선택)
+3. randomforest(상위 10개의 중요도를 가지고 있는 변수 선택)
+4. neural network(영향력이 강한 변수 상위 5개 선택)
+5. logistic + randomforest(종속변수가 적을수록 더 큰 정확도를 보이는 랜덤포레스트를 위해 로지스틱회귀분석 후 선택된 변수들로만 랜던포레스트 시행 후 5개의 변수 선택)
 
-#### 2. CART
-1. logistic regression
-2. C4.5
-3. randomforest
-4. neural network
-5. logistic + randomforest
+#### 1. CHAID(Best Model)
+1. logistic regression : Accuracy = 0.6644, Sensitivity = 0.754, Specivity = 0.5684
+2. C4.5 : Accuracy = 0.6642, Sensitivity = 0.7398, Specivity = 0.5823
 
-#### 3. CTREE
-1. logistic regression
-2. C4.5
-3. randomforest
-4. neural network
-5. logistic + randomforest
+#### 2. CART(Best Model)
+1. non selection : Accuracy = 0.64, Sensitivity = 0.7178, Specivity = 0.5578
+2. C4.5 : Accuracy = 0.64311, Sensitivity = 0.035, Specivity = 0.661
+
+#### 3. CTREE(Best Model)
+1. non selection : Accuracy = 0.6661, Sensitivity = 0.7006, Specivity = 0.6284
+2. C4.5 : Accuracy = 0.6597, Sensitivity = 0.7351, Specivity = 0.5785
+3. random forest : Accuracy = 0.654, Sensitivity = 0.7591, Specivity = 0.5403
 
 ## 4 모델링 평가
 ### 1. ROC curve(AUC)를 이용한 모델 평가
-1. logistic regression + CHAID
-2. C4.5 + CHAID
-3. no selection + CART
-4. logistic regression + randomforest + CART
-5. no selection + CTREE
-6. C4.5 + CTREE
-7. randomforest + CTREE
+1. 가장 높은 정확도는 변수선택을 하지 않은 CTREE MODEL이 가장 좋은 모델로 판단된다.
+2. 그러나 민감도나 특이도도 중요한 지표이기 때문에, 동시에 고려하는 AUC를(ROC CURVE)를 보도록 한다.
+3. 최종적으로는 로지스틱 회귀모형으로 변수를 선택하고 CHAID알고리즘으로 분류한 것과, random forest로 변수를 선택하고 CTREE알고리즘을 사용한 모델이 가장 좋은 모델이라고 판명되었다.
 
 ### 2. Train Data and Validation Data
+1. Train data를 70%를 비복원추출로 만들었고, 남은 30%를 Validation data로 설정하여 정확도를 측정하였다.
 
 ## 5 결론
+1. 최종적으로는 로지스틱 회귀모형으로 변수를 선택하고 CHAID알고리즘으로 분류한 것과, random forest로 변수를 선택하고 CTREE알고리즘을 사용한 모델이 가장 좋은 모델이라고 판명되었다.
+2. 두 모델을 거의 차이가 없으나, 후자의 모델링 속도가 2~3배 빨랐다. 그러므로 후자의 모델을 선택하였고, 해석을 했을 때, 폐렴을 앓아본 경험이 있는 것이 가장 중요한 것으로 나타났으며, 본인의 건강상태를 스스로 진단했을 때의 대답 또한 중요한 것으로 나타났다. 마지막으로 흥미로운 변수는 결혼여부가 있다면, 암을 앓을 확률이 높다는 것이다. 아마도 결혼여부가 나이에 대한 척도가 된다는 생각이 들었다.
+3. 추가적으로 변수가 아직까지 많다는 것을 느꼈다. PCA나, 동일한 분포를 가진 범주형 변수에 대해 통합, 분리 등의 전처리가 추가로 필요하다는 것을 느꼈다.
 
